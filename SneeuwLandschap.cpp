@@ -5,13 +5,11 @@
  *      Author: acer
  */
 
-#include "SneeuwLandschap.hpp"
-
+#include "SneeuwLandschap.h"
 
 //globale variabelen voor breedte en hoogte van het scherm
 int screenWidth;
 int screenHeight;
-
 
 //constructor
 SneeuwLandschap::SneeuwLandschap()
@@ -25,9 +23,8 @@ SneeuwLandschap::SneeuwLandschap()
 	this->sneeuwHoogte = 30;
 
 	//maak een nieuwe sneeuwman
-	this->sneeuwMan = new SneeuwMan( screenWidth / 2, screenHeight - this->sneeuwHoogte );
+	this->sneeuwMan = new SneeuwMan(screenWidth/2, screenHeight - this->sneeuwHoogte, 40);
 }
-
 
 //wordt aangeroepen als er input is (druk op de toets, touch van scherm)
 void SneeuwLandschap::run( MAEvent event )
@@ -48,9 +45,17 @@ void SneeuwLandschap::run( MAEvent event )
 	}
 
 
-	//TODO: voeg een sneeuwvlok toe
+	//Voeg een sneeuwvlok toe
+	vlokjes.add(new SneeuwVlok(rand() % screenWidth,0,rand() % 10+2));
 
-	//TODO: laat alle sneeuwvlokken vallen
+	//Laat alle sneeuwvlokken vallen en verwijder de DODE vlokken
+	for(int i = 0;i<vlokjes.size();i++){
+		if(vlokjes[i]->isDead()){
+			vlokjes.remove(i);
+		}else{
+			vlokjes[i]->fall(sneeuwHoogte);
+		}
+	};
 }
 
 
@@ -58,16 +63,20 @@ void SneeuwLandschap::run( MAEvent event )
 void SneeuwLandschap::draw()
 {
 	//kleur de lucht blauw
-	maSetColor( 0x0055ff );
+	maSetColor( 0x0B0B3B );
 	maFillRect( 0, 0, screenWidth, screenHeight );
 
 	//maak sneeuw op de grond, a.d.h.v. sneeuwHoogte
 	maSetColor( 0xffffff );
 	maFillRect( 0, screenHeight - this->sneeuwHoogte, screenWidth, this->sneeuwHoogte );
 
-	//TODO: teken de sneeuwman
+	//Teken de sneeuwman
+	this->sneeuwMan->draw();
 
-	//TODO: teken alle sneeuwvlokken
+	//Teken alle sneeuwvlokken
+	for(int i = 0;i<vlokjes.size();i++){
+		vlokjes[i]->draw();
+	};
 }
 
 

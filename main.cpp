@@ -1,9 +1,7 @@
 #include <ma.h>
 #include <conprint.h>
-
-
 //include sneeuwlandschap om te instantiëren en gebruiken
-#include "SneeuwLandschap.hpp"
+#include "SneeuwLandschap.h"
 
 
 //de main functie
@@ -18,7 +16,7 @@ extern "C" int MAMain()
 	while (TRUE)
 	{
 		//run met 1 frame per 100 ms
-		maWait(100);
+		maWait(40);
 
 		//kijk of er events hebben plaatsgevonden, sla die info op in MAEvent event.
 		maGetEvent(&event);
