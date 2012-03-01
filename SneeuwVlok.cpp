@@ -7,29 +7,40 @@
 #include <ma.h>
 #include "SneeuwVlok.h"
 
-bool dead = false;
-
+//Constructor
 SneeuwVlok::SneeuwVlok(int positionX, int positionY, int size) {
+	this->dead = false;
 	this->size = size;
 	this->positionX = positionX;
 	this->positionY = positionY;
 }
 
+//Wordt aangeroepen door sneeuwlandschap het vlokje te laten vallen
 void SneeuwVlok::fall(int sneeuwHoogte){
 	MAExtent screenSize = maGetScrSize();
 
+	//Laat het vlokje vallen of markeert het vlokje als dood als het de sneeuw raakt
 	if(positionY >= EXTENT_Y( screenSize )-sneeuwHoogte){
-		dead = true;
+		this->dead = true;
 	}else{
 		this->positionY += 5;
 	};
 }
 
+//Wordt aangeroepen door sneeuwlandschap het vlokje te laten tekenen
 void SneeuwVlok::draw(){
-	maSetColor(0xffffff);
+	if(dead == true){
+		maSetColor(0xff0000);
+	}else{
+		maSetColor(0xffffff);
+	}
 	maFillRect(this->positionX, this->positionY, size, size);
 }
 
+//Methode die de status van het vlokje opvraagt
 bool SneeuwVlok::isDead(){
 	return dead;
+}
+
+SneeuwVlok::~SneeuwVlok() {
 }

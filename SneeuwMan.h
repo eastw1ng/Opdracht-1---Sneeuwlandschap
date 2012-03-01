@@ -29,6 +29,8 @@ public:
 
 	//tekent een sneeuwman
 	void draw();
+
+	virtual ~SneeuwMan();						//zorgt voor het verwijderen van de klasse
 };
 
 

@@ -12,7 +12,6 @@
 //deze header hebben we nodig voor de functie rand()
 #include <mastdlib.h>
 
-
 //maak een klasse SneeuwVlok
 class SneeuwVlok
 {
@@ -27,8 +26,7 @@ public:
 	void draw();								//teken functie die een sneeuwvlok tekent
 	void fall( int groundLevel );				//functie die de y positie verandert
 	bool isDead();								//functie die de sneeuwvlok dead status teruggeeft
+	virtual ~SneeuwVlok();						//zorgt voor het verwijderen van de klasse
 };
-
-
 
 #endif /* SNEEUWVLOK_HPP_ */

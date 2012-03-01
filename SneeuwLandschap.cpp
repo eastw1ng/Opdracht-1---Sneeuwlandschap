@@ -44,16 +44,20 @@ void SneeuwLandschap::run( MAEvent event )
 			this->sneeuwMan->move( 6 );		//beweeg sneeuwman 6 pixels
 	}
 
-
 	//Voeg een sneeuwvlok toe
 	vlokjes.add(new SneeuwVlok(rand() % screenWidth,0,rand() % 10+2));
 
 	//Laat alle sneeuwvlokken vallen en verwijder de DODE vlokken
 	for(int i = 0;i<vlokjes.size();i++){
-		if(vlokjes[i]->isDead()){
-			vlokjes.remove(i);
-		}else{
-			vlokjes[i]->fall(sneeuwHoogte);
+		vlokjes[i]->fall(sneeuwHoogte); //Laat het vlokje vallen
+	};
+
+	//Verwijder dode vlokken
+	for(int i = 0;i<vlokjes.size();i++){
+		if(vlokjes[i]->isDead() == true){
+			SneeuwVlok* temp = vlokjes[i]; //Vult een tijdelijke container met de pointer van het volkje
+			vlokjes.remove(i); //Verwijdert het vlokje uit de array
+			delete temp; //Verwijdert het vlokje uit het geheugen
 		}
 	};
 }
