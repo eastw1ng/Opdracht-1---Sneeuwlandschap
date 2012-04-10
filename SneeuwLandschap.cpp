@@ -44,7 +44,7 @@ void SneeuwLandschap::run( MAEvent event )
 			this->sneeuwMan->move( 6 );		//beweeg sneeuwman 6 pixels
 	}
 
-	//Voeg een sneeuwvlok toe
+	//Voeg een sneeuwvlok toe in een random positie
 	vlokjes.add(new SneeuwVlok(rand() % screenWidth,0,rand() % 10+2));
 
 	//Laat alle sneeuwvlokken vallen en verwijder de DODE vlokken

@@ -29,11 +29,7 @@ void SneeuwVlok::fall(int sneeuwHoogte){
 
 //Wordt aangeroepen door sneeuwlandschap het vlokje te laten tekenen
 void SneeuwVlok::draw(){
-	if(dead == true){
-		maSetColor(0xff0000);
-	}else{
-		maSetColor(0xffffff);
-	}
+	maSetColor(0xffffff);
 	maFillRect(this->positionX, this->positionY, size, size);
 }
 
